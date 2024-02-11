@@ -12,7 +12,11 @@ const thoughtSchema = mongoose.Schema({
         },
     },
     createdAt: {
-        date: 
+        type: Date ,
+        default: Date.now,
+        get: (date) => {
+            if (date) return date.toISOString().split("T") [0];
+        },
         //Set default value to the current timestamp
         //Use a getter method to format the timestamp on query
     },

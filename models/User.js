@@ -17,14 +17,27 @@ const userSchema = mongoose.Schema({
             message: `Please try again, that email is invalid`,
         },
     },
-    thoughts: {
-        //Array of `_id` values referencing the `Thought` model
+    thoughts: [{
+        type: Schema.Types.ObjectId,
+        ref: "Thought",
+        },
+    ],
+    friends: [{
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        },
+    ],
+},
+{
+    toJSON: {
+        virtuals: true,
     },
-    friends: {
-        //Array of `_id` values referencing the `User` model (self-reference)
-    },
+    id: false,
 });
 
 //Virtual 'friendCount' to retrieve length of user's friends array field on query
+userSchema.virtual('friendCount').get(function () {return this.friends.length;});
+
+const User = model('user', userSchema);
 
 module.exports = User;

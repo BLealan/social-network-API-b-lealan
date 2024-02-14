@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const thoughtSchema = mongoose.Schema({
+const thoughtSchema = Schema({
     thoughtText: {
         type: String,
         required: true,
@@ -24,7 +24,7 @@ const thoughtSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    reactions: [reactionSchema],
+    // reactions: [reactionSchema],
 },
 {
     toJSON: {
@@ -33,7 +33,7 @@ const thoughtSchema = mongoose.Schema({
     id: false,
 });
 
-const rectionSchema = mongoose.Schema({
+const rectionSchema = Schema({
     reactionId: {
         type: Schema.Types.ObjectId,
         //default value set to new ObjectId

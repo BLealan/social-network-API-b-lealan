@@ -33,7 +33,7 @@ const thoughtSchema = Schema({
     id: false,
 });
 
-const rectionSchema = Schema({
+const reactionSchema = Schema({
     reactionId: {
         type: Schema.Types.ObjectId,
         //default value set to new ObjectId
@@ -66,5 +66,6 @@ const rectionSchema = Schema({
 thoughtSchema.virtual('reactionCount').get(function () {return this.reactions.length;});
 
 const Thought = model('thougt', thoughtSchema);
+ 
 
-module.exports = Thought;
+module.exports = Thought, reactionSchema;
